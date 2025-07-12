@@ -5,7 +5,7 @@ import DashboardHome from '../../components/DashboardHome';
 import HostingStart from '../gitconnect/page';
 import DeployPage from '../gitconnect2/page';
 import SetupDeployPage from '../buildfromgit/page'; 
-export default function Home() {
+export default function Hosting() {
   return (
     <main className="flex bg-black">
       <Sidebar />

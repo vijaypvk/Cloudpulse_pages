@@ -62,14 +62,19 @@ export default function HostingStart() {
   <div >
     <Sidebar />
     <main className="min-h-screen bg-black text-white px-6 py-10 relative ml-64">
+        <div className="text-sm text-gray-400 flex items-center space-x-2 mx-6 mb-8 ">
+        <span><a href="/pages/hostingpage">Pages</a></span>        
+        <span>›</span>        
+        <span>Services</span>        
+      </div>
       {/* Back Link */}
-      <a
-        href="/pages/homePage"
-        className="text-blue-500 hover:underline flex items-center gap-2 mb-8 transition-all"
+      {/* <a
+        href="/pages/hostingpage"
+        className="text-blue-500 hover:underline flex items-center gap-2 mb-6 transition-all"
       >
         <ChevronLeft className="w-4 h-4" />
         Back to Compute (Workers) overview
-      </a>
+      </a> */}
 
       {/* Title and Subtitle */}
       <h1 className="text-4xl font-extrabold tracking-tight mb-2">Get started</h1>

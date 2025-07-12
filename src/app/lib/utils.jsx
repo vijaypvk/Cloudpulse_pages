@@ -1,5 +1,6 @@
-export default function utils() {
-    return (
-        <div>This is a Utils Component</div>
-    );
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
 }
