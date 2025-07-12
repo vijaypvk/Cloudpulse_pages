@@ -395,41 +395,201 @@ export function GlobeDemo() {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
-return (
-  <div
-    className="flex flex-row items-center justify-center py-7 h-screen md:h-auto dark:bg-black bg-white relative  ml-40">
-
+  return (
     <div
-      className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 1,
-        }}
-        className="div">
-        <h2
-          className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-          Powering Serverless Across the Globe
-        </h2>
-        <p
-          className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto z-40">
-          CloudPulse helps developers deploy, scale, and manage serverless apps effortlessly—across any cloud, from anywhere in the world.
-        </p>
-      </motion.div>
-      <div
-        className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-5 mr-3 mb-8" />
-      <div className="absolute w-full -bottom-20 h-64 md:h-full z-5">
-        <World data={sampleArcs} globeConfig={globeConfig} />
+      className="flex flex-row items-center justify-center py-7 h-screen md:h-auto dark:bg-black bg-white relative ml-40"
+    >
+      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="div"
+        >
+          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
+            Powering Serverless Across the Globe
+          </h2>
+          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto z-40">
+            CloudPulse helps developers deploy, scale, and manage serverless apps effortlessly—across any cloud, from anywhere in the world.
+          </p>
+        </motion.div>
+
+        <div className="absolute  w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-5 mr-3 mb-8" />
+        <div className="absolute w-full -bottom-20 h-64 md:h-full z-5">
+          <World data={sampleArcs} globeConfig={globeConfig} />
+        </div>
       </div>
+
+      {/* Cards Section */}
+      <div className="absolute z-50 w-full max-w-6xl bottom-20 left-64">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 ">
+
+          {/* Total Deployments */}
+          <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-2xl p-5 text-white shadow-inner shadow-white/5 hover:shadow-lg transition duration-300 ease-in-out">
+            <div className="text-sm text-neutral-300 mb-1">Total Deployments</div>
+            <div className="text-3xl font-bold">128</div>
+          </div>
+
+          {/* Build Status */}
+          <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-2xl p-5 text-white shadow-inner shadow-white/5 hover:shadow-lg transition duration-300 ease-in-out">
+            <div className="text-sm text-neutral-300 mb-1">Build Status</div>
+            <div className="flex flex-col text-sm font-medium mt-1">
+              <span className="flex items-center gap-2 text-green-400">
+                <svg className="w-3 h-3 fill-green-400" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="10" />
+                </svg>
+                36
+              </span>
+              <span className="flex items-center gap-2 text-red-400 mt-1">
+                <svg className="w-3 h-3 fill-red-400" viewBox="0 0 20 20">
+                  <circle cx="10" cy="10" r="10" />
+                </svg>
+                2
+              </span>
+            </div>
+          </div>
+
+          {/* Active Projects */}
+          <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-2xl p-5 text-white shadow-inner shadow-white/5 hover:shadow-lg transition duration-300 ease-in-out">
+            <div className="text-sm text-neutral-300 mb-1">Active Projects</div>
+            <div className="text-3xl font-bold">5</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Activity Card */}
+      <div className="absolute right-2 top-20 z-50">
+        <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-xl p-4 text-white shadow-inner shadow-white/5 w-60">
+
+          <div className="flex items-center justify-between text-lg font-semibold mb-4">
+            <span>Activity</span>
+            <img
+              src="/map.png" // Make sure this path is correct
+              alt="Activity Icon"
+              className="w-[55%] h-[50%]" // Adjust size as needed
+            />
+          </div>
+          <ul className="space-y-3 text-sm">
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 mt-1 bg-green-400 rounded-full" />
+              <div>
+                <p>Deployed <code>'proj2'</code> to production</p>
+                <p className="text-neutral-400 text-xs">2 minutes ago</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 mt-1 bg-green-400 rounded-full" />
+              <div>
+                <p>Build succeeded for <code>'proj3'</code></p>
+                <p className="text-neutral-400 text-xs">1 hour ago</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 mt-1 bg-red-500 rounded-full" />
+              <div>
+                <p>Build failed for <code>'proj2'</code></p>
+                <p className="text-neutral-400 text-xs">1 day ago</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="absolute right-2 bottom-20 z-50 mb-4">
+        <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-xl p-3 text-white shadow-inner shadow-white/5 w-60">
+          <div className="text-lg font-semibold mb-4">test</div>
+          <ul className="space-y-3 text-sm">
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 mt-1 bg-green-400 rounded-full" />
+              <div>
+                <p>Deployed <code>'proj2'</code> to production</p>
+                <p className="text-neutral-400 text-xs">2 minutes ago</p>
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 mt-1 bg-green-400 rounded-full" />
+              <div>
+                <p>Build succeeded for <code>'proj3'</code></p>
+                <p className="text-neutral-400 text-xs">1 hour ago</p>
+              </div>
+            </li>
+
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 mt-1 bg-red-500 rounded-full" />
+              <div>
+                <p>Build failed for <code>'proj2'</code></p>
+                <p className="text-neutral-400 text-xs">1 day ago</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </div>
-  </div>
-   
-);
+
+
+  );
 }
+
+// <div
+//   className="flex flex-row items-center justify-center py-7 h-screen md:h-auto dark:bg-black bg-white relative  ml-40">
+
+//   <div
+//     className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+//     <motion.div
+//       initial={{
+//         opacity: 0,
+//         y: 20,
+//       }}
+//       animate={{
+//         opacity: 1,
+//         y: 0,
+//       }}
+//       transition={{
+//         duration: 1,
+//       }}
+//       className="div">
+//       <h2
+//         className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
+//         Powering Serverless Across the Globe
+//       </h2>
+//       <p
+//         className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto z-40">
+//         CloudPulse helps developers deploy, scale, and manage serverless apps effortlessly—across any cloud, from anywhere in the world.
+//       </p>
+//     </motion.div>
+//     <div
+//       className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-5 mr-3 mb-8" />
+//     <div className="absolute w-full -bottom-20 h-64 md:h-full z-5">
+//       <World data={sampleArcs} globeConfig={globeConfig} />
+//     </div>
+//   </div>
+//   {/* Cards Section */}
+//   <div className="absolute z-40 w-full max-w-6xl bottom-20 ml-72">
+//     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+//       <div className="bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-5 text-white shadow">
+//         <div className="text-sm text-neutral-400 mb-1">Total Deployments</div>
+//         <div className="text-3xl font-bold">128</div>
+//       </div>
+//       <div className="bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-5 text-white shadow">
+//         <div className="text-sm text-neutral-400 mb-1">Build Status</div>
+//         <div className="flex flex-col text-sm font-medium mt-1">
+//           <span className="flex items-center gap-2 text-green-400">
+//             <svg className="w-3 h-3 fill-green-400" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+//             36
+//           </span>
+//           <span className="flex items-center gap-2 text-red-400 mt-1">
+//             <svg className="w-3 h-3 fill-red-400" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+//             2
+//           </span>
+//         </div>
+//       </div>
+//       <div className="bg-black/40 border border-white/10 backdrop-blur-md rounded-2xl p-5 text-white shadow">
+//         <div className="text-sm text-neutral-400 mb-1">Active Projects</div>
+//         <div className="text-3xl font-bold">5</div>
+//       </div>
+//     </div>
+//   </div>
+
+// </div>

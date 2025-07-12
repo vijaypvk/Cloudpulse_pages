@@ -60,7 +60,7 @@ export default function Home() {
 
 
         {/* Globe in the background */}
-        <div className="absolute inset-0 mr-10 ">
+        <div className="absolute inset-0 mr-10">
           <GlobeDemo />
         </div>
       </main>
