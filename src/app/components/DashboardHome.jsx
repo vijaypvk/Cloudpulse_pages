@@ -54,7 +54,7 @@ const DashboardHome = () => {
   );
 
   return (
-    <div className="bg-black text-gray-300 relative min-h-screen ml-64">
+    <div className="bg-black text-gray-300 relative min-h-screen ml-64 ">
 
       <div className="text-sm text-gray-400 flex items-center space-x-2 mx-6 mt-7 mb-11">
         <span>Pages</span>

@@ -419,18 +419,17 @@ export function GlobeDemo() {
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
-
       {/* Cards Section */}
-      <div className="absolute z-50 w-full max-w-6xl bottom-20 left-64">
+      {/* <div className="absolute z-50 w-full max-w-6xl bottom-20 left-64">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-4 ">
 
-          {/* Total Deployments */}
+          
           <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-2xl p-5 text-white shadow-inner shadow-white/5 hover:shadow-lg transition duration-300 ease-in-out">
             <div className="text-sm text-neutral-300 mb-1">Total Deployments</div>
             <div className="text-3xl font-bold">128</div>
           </div>
 
-          {/* Build Status */}
+ 
           <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-2xl p-5 text-white shadow-inner shadow-white/5 hover:shadow-lg transition duration-300 ease-in-out">
             <div className="text-sm text-neutral-300 mb-1">Build Status</div>
             <div className="flex flex-col text-sm font-medium mt-1">
@@ -449,7 +448,7 @@ export function GlobeDemo() {
             </div>
           </div>
 
-          {/* Active Projects */}
+         
           <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-2xl p-5 text-white shadow-inner shadow-white/5 hover:shadow-lg transition duration-300 ease-in-out">
             <div className="text-sm text-neutral-300 mb-1">Active Projects</div>
             <div className="text-3xl font-bold">5</div>
@@ -457,10 +456,10 @@ export function GlobeDemo() {
 
         </div>
 
-      </div>
+      </div> */}
 
       {/* Activity Card */}
-      <div className="absolute right-2 top-20 z-50">
+      {/* <div className="absolute right-2 top-20 z-50">
         <div className="bg-gradient-to-br from-white/10 to-white/5 border border-white/20 backdrop-blur-xl rounded-xl p-4 text-white shadow-inner shadow-white/5 w-60">
 
           <div className="flex items-center justify-between text-lg font-semibold mb-4">
@@ -524,7 +523,7 @@ export function GlobeDemo() {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
     </div>
 

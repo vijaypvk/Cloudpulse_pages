@@ -61,7 +61,7 @@ export default function HostingStart() {
   return (
   <div >
     <Sidebar />
-    <main className="min-h-screen bg-black text-white px-6 py-10 relative ml-64">
+    <main className="min-h-screen bg-black text-white px-6 py-10 relative ml-64 ">
         <div className="text-sm text-gray-400 flex items-center space-x-2 mx-6 mb-8 ">
         <span><a href="/pages/hostingpage">Pages</a></span>        
         <span>›</span>        
