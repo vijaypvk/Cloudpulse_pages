@@ -252,7 +252,9 @@ export default function DeployPage() {
             <a href="" className="text-sm text-gray-400 hover:text-white transition-colors">
               Cancel
             </a>
+            
             <a href={`/pages/buildfromgit?repo=${selectedRepo}`}>
+            
               <button
                 disabled={!selectedRepo}
                 className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl font-medium"
