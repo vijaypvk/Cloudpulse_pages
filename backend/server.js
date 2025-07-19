@@ -184,7 +184,7 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
 const mime = require("mime-types");
-const buildRoutes = require("./build/buildAndServe");
+const buildRoutes = require("./buildandserve/buildAndServe");
 const minioClient = require("./utils/minioClient");
 
 dotenv.config();
