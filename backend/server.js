@@ -347,5 +347,5 @@ app.get("/api/get-deploy-config", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running at http://192.168.10.20:${PORT}`);
 });
