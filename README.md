@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cloudpulse
 
-## Getting Started
+# Pages:
 
-First, run the development server:
+## 📌 Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+A centralized **Git-integrated static hosting platform** built to deploy and serve student projects and event websites through a CI/CD pipeline. It uses GitHub webhooks to automate builds, Docker for isolated deployments, and MinIO for object storage—all routed securely through NGINX and served with subdomain-based access.
+
+## 🧩 Core Features
+
+- GitHub integration (OAuth or token-based)
+- Auto builds on `git push`
+- Docker-based build system for SPAs/static sites
+- MinIO object storage for deployed files
+- NGINX reverse proxy with subdomain routing
+- Preview deployments for pull requests
+- Deployment logs and status in the frontend
+- Custom domains (planned)
+- Secure backend API for managing deployments
+
+---
+
+## ⚙️ Architecture
+
+```java
+   GitHub Repo
+      |
+      | (Webhook)
+      v
+[Webhook Listener] --> [Build System] --> [Upload to MinIO]
+      |                                     |
+      |                                     v
+[Database (Deployment Info)]         [MinIO Bucket/Prefix]
+      |                                     |
+      v                                     v
+[Backend (Node.js)] <--- NGINX <--- Cloudflare Tunnel <--- User (via subdomain)
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![cloudpulse hosting.png](cloudpulse_hosting.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Technologies Used
 
-## Learn More
+| Component | Tech Stack |
+| --- | --- |
+| CI/CD & Build | Docker, Bash, Node.js |
+| Hosting Backend | Node.js + Express |
+| Storage | MinIO (S3-compatible) |
+| Proxy/Serving | NGINX |
+| Frontend | Next.js or React.js |
+| Domain Routing | Cloudflare + NGINX |
+| Database | PostgreSQL / MongoDB |
+| Git Integration | GitHub OAuth + Webhooks |
+| Build Logs | File/DB logging, JSON |
+| Authentication | GitHub OAuth or token |
 
-To learn more about Next.js, take a look at the following resources:
+## 🔄 Deployment Flow (Step-by-step)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. **Project Setup**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- A **central GitHub organization** is created.
+- Each student/project gets a **private repository** under this org.
+- GitHub personal access token (with required scopes) is stored in backend.
 
-## Deploy on Vercel
+### 2. **Webhook Setup**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Webhook added to each repo (on push / PR events).
+- Webhook URL points to your backend listener (`/api/webhook`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. **Webhook Listener**
+
+- Verifies webhook signature.
+- Extracts branch, repo, commit info.
+- Logs the event and queues a build.
+
+### 4. **Build System**
+
+- Clones the repo.
+- Uses a **Docker container** with builder tools (`npm`, `yarn`, `vite`, etc.).
+- Builds the site (usually outputs to `/dist`, `/build`, etc.).
+- Handles build failures and logs errors.
+
+### 5. **Storage & CDN**
+
+- Built output is uploaded to MinIO bucket, organized by:
+    
+    ```
+    
+    /<project_name>/<branch_name>/index.html
+    ```
+    
+    `index.html` fallback is enabled for SPAs.
+    
+- Optional preview deployments use:
+    
+    ```
+    
+    /<project_name>/preview/<pr_id>/
+    ```
+    
+
+### 6. **Reverse Proxy (NGINX)**
+
+- Maps subdomains like:
+    
+    ```
+    
+    project.vijay.me --> /<project_name>/main/
+    ```
+    
+    SPA fallback with `try_files $uri /index.html`.
+    
+- Served from MinIO via backend proxy route.
+
+### 7. **Frontend Dashboard**
+
+- Shows project status, logs, last deployment.
+- Allows manual trigger of deployments.
+- Displays preview URLs for PRs.
+- (Planned) Analytics & visitor stats.
+
+## 🔐 Authentication & Security
+
+- Webhook signature verification.
+- GitHub token stored securely in `.env` or secret manager.
+- Access to private repos only for assigned collaborators.
+- Subdomain access routed through Cloudflare Tunnel for HTTPS.
